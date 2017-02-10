@@ -1,5 +1,7 @@
 from twisted.web.static import File
 from klein import Klein
+import bluetooth
+import json
 
 app = Klein()
 
@@ -16,8 +18,12 @@ def pg_user(request, username):
 def pg_string(request, arg):
     return '%s devices:' % (arg,)
 
-@app.route('/scan')
+@app.route('/scan',branch=True)
 def pg_scan(request):
-    return 'Scanning...'
+    devices_nearby=bluetooth.discover_devices(lookup_names=True)
+    request.setHeader('Content-Type', 'application/json')
+    return json.dumps(devices_nearby)
+    #return File('./')
 
 app.run("0.0.0.0", 24180)
+

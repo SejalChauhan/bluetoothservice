@@ -9,7 +9,8 @@ FROM ubuntu:latest
 
 RUN apt-get update
 RUN apt-get install -y \
-    python python-pip python-dev build-essential wget supervisor bluez bluez-tools
+    python python-pip python-dev build-essential wget supervisor \
+    bluez bluez-tools libbluetooth-dev
 
 # Install files required by the chute.
 #
