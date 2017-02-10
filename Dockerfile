@@ -9,7 +9,7 @@ FROM ubuntu:latest
 
 RUN apt-get update
 RUN apt-get install -y \
-    python python-pip python-dev build-essential wget supervisor
+    python python-pip python-dev build-essential wget supervisor bluez bluez-tools
 
 # Install files required by the chute.
 #
@@ -25,7 +25,7 @@ RUN pip install -r requirements.txt
 #
 # EXPOSE <port_inside_container>
 #
-EXPOSE 24180
+EXPOSE 24180 80
 
 # This is the command that will be run inside the container.  It can be a bash
 # script that runs other commands, a python script, a compiled binary, etc.
